@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title> To-Do List </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  
+
+  <style>
+    :root{
+      --card-w: 460px;
+      --accent1: #4b79a1;
+      --accent2: #283e51;
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(135deg, #0f1724 0%, #10263a 35%, #153a52 100%);
+      -webkit-font-smoothing:antialiased;
+      color:#0b1720;
+    }
+
+    .wrap {
+      min-height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+    }
+
+    .todo-card{
+      width:var(--card-w);
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,250,0.98));
+      border-radius:18px;
+      padding:26px;
+      box-shadow: 0 18px 50px rgba(2,6,23,0.6);
+      transform-origin:center;
+      transition: transform .28s ease, box-shadow .28s ease;
+    }
+    .todo-card:hover{ transform: translateY(-6px); box-shadow:0 30px 70px rgba(2,6,23,0.72); }
+
+    .brand {
+      display:flex;
+      gap:14px;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:10px;
+    }
+
+    .brand .logo {
+      width:64px;
+      height:64px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(135deg,var(--accent1),var(--accent2));
+      color:#fff;
+      box-shadow: 0 6px 20px rgba(75,121,161,0.28);
+      flex-shrink:0;
+    }
+
+    .brand h1{ font-size:20px; margin:0; font-weight:700; letter-spacing:0.2px; color:#0b1720; }
+    .brand p{ margin:0; font-size:12px; color:#4b5563; }
+
+    .input-area { margin-top:14px; margin-bottom:10px; display:flex; gap:10px; }
+    .input-area .form-control {
+      border-radius:12px;
+      box-shadow:none;
+    }
+    .btn-add {
+      border-radius:12px;
+      padding-left:18px; padding-right:18px;
+      font-weight:600;
+      background:linear-gradient(180deg,var(--accent1),var(--accent2));
+      border:0;
+      color:white;
+    }
+    .btn-add:disabled{ opacity:0.65; cursor:not-allowed; }
+
+    .tasks { margin-top:14px; }
+    .task {
+      background: linear-gradient(90deg,#ffffff, #fbfdff);
+      padding:12px;
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:10px;
+      border:1px solid rgba(10,20,30,0.04);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .task:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(2,6,23,0.06); }
+
+    .task .text { font-size:15px; color:#102330; }
+    .muted { color:#6b7280; font-size:13px; margin-top:6px; text-align:center; }
+    @media (max-width:520px){
+      .todo-card { width:100%; padding:18px; border-radius:14px; }
+      .brand .logo{ width:56px; height:56px; }
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="to do list web app.html">My To-Do App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="To do list web app.html">Project</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="ateam.html">Learning Group</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+  <div class="wrap">
+    <div class="todo-card">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M3 13.5V6.75A2.75 2.75 0 0 1 5.75 4h12.5A2.75 2.75 0 0 1 21 6.75V17.25A2.75 2.75 0 0 1 18.25 20H8.25" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8.5 9.5l2 2 5-5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <h1>To-Do list web app</h1>
+        </div>
+      </div>
+      <div class="input-area">
+        <input class="form-control" placeholder="Write a task " aria-label="task input" />
+        <button class="btn btn-add" disabled title="Disabled: This demo is static">Add</button>
+      </div>
+      <div class="tasks">
+        <div class="task">
+          <input class="form-check-input" type="checkbox" aria-label="task1" />
+          <div class="text">complete assignment</div>
+        </div>
+
+        <div class="task">
+          <input class="form-check-input" type="checkbox" aria-label="task2" checked />
+          <div class="text">prepare project PPT for presentation</div>
+        </div>
+
+        <div class="task">
+          <input class="form-check-input" type="checkbox" aria-label="task3" />
+          <div class="text">prepare for project</div>
+        </div>
+
+        <div class="task">
+          <input class="form-check-input" type="checkbox" aria-label="task4" />
+          <div class="text">practice viva questions</div>
+        </div>
+      </div>
+
+      <p class="muted">Note: This is a static demo. For saving or adding tasks, we need JavaScript .</p>
+    </div>
+  </div>
+</body>
+</html>
